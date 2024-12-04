@@ -1,0 +1,83 @@
+---
+title: "Class 6: R functions"
+author: "Medhini Sosale (PID: A69034757)"
+format: pdf
+---
+
+My first function :)
+
+```{r}
+add <- function(x,y=1,z=0){
+  x + y + z
+}
+  
+```
+
+Can I just use it?
+```{r}
+add(1, 1)
+add(x=1, y=100)
+add(c(100,1,100),1)
+```
+```{r}
+add(10) # works because we set y to a default value
+add(10, 10)
+```
+```{r}
+add(1, 1, z=1)
+```
+
+Write a function "generate_dna" that makes a random nucleotide sequence of any length
+```{r}
+# generate_dna <- function(){
+  
+# }
+
+bases <- c("A", "C", "G", "T")
+sequence <- sample(bases, size=50, replace = TRUE)
+```
+
+Turning working snippet into a function:
+```{r}
+generate_dna <- function(length){
+  bases <- c("A", "C", "G", "T")
+  sequence <- sample(bases, size=length, replace = TRUE)
+  return(sequence)
+}
+```
+
+```{r}
+generate_dna(10)
+```
+
+Then I installed the bio3d package.
+
+```{r}
+aa <- unique(bio3d::aa.table$aa1)[1:20] # pull out the amino acid table but only unique labels
+
+generate_protein <- function(length){
+ aa <- unique(bio3d::aa.table$aa1)[1:20]
+ sequence <- sample(aa, size=length, replace = TRUE)
+ sequence <- paste(sequence, collapse = '') # gets rid of spaces
+ return(sequence)
+}
+
+generate_protein(10)
+
+for (len in 6:13)
+     {
+      seq <- generate_protein(len)
+      print(seq)
+}
+
+```
+```{r}
+answer <- sapply(6:12, generate_protein)
+paste(c("barry", "alice", "amy", "chandra"), "loves R", sep='')
+
+```
+
+```{r}
+cat(paste('>id.', 6:12, '\n', answer, sep='', '\n')) # prepping the sequences to be FASTA / BLAST friendly
+```
+

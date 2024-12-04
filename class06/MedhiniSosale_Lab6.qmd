@@ -1,0 +1,27 @@
+---
+title: "Class 6 Lab"
+author: "Medhini Sosale"
+format: html
+---
+
+Question 1:
+```{r}
+student_hw <- read.csv('student_homework.csv')
+
+grade <- function(student){
+  sorted <- sort(student)
+  student_new <- sorted[-1]
+  return(student_new)
+}
+
+grade <- function(){
+  # if there is an NA, remove NA
+  # if not, remove the lowest numerical value
+  # take the average of the values that are left to determine overall grade
+  # return overall grade for each student, labeled
+}
+
+sapply(student_grades, grade)
+# note that apply runs on tables
+```
+
